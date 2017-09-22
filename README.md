@@ -23,6 +23,12 @@ npm run lint
 
 ```
 
+### TODO
+
+- [ x ] add a preview loading page
+- [ x ] add a progress bar
+- [ x ] add log4js
+
 ---
 
 This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[a01d4d6](https://github.com/SimulatedGREG/electron-vue/tree/a01d4d68edff32c432273320f7df716234f56146) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).

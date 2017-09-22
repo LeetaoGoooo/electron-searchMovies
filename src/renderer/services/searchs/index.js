@@ -58,7 +58,7 @@ function getDownloadUrlsFromDetails (arr, render) {
       callback(error, newItem)
     })
   }, function (error, results) {
-    console.log(error, results)
+    console.log(error)
     render(results)
   })
 }

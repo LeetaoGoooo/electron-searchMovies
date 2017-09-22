@@ -15,6 +15,7 @@
 <script>
 import Updates from '@/services/updates'
 import Utils from '@/services/utils'
+import Logs from '@/services/logs'
 
 export default {
   data () {
@@ -44,6 +45,7 @@ export default {
       }
     },
     reportError: function (error) {
+      Logs.logError(error)
       console.log(error)
     },
     changeProgrss: function (value) {

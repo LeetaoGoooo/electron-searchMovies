@@ -8,12 +8,19 @@ var updateCount = 0
 var updatefilesCount = 0
 
 function getLocalVersion () {
-  var data = JSON.parse(fs.readFileSync(path.join(__dirname, '../../../../package.json')).toString())
+  try {
+    // 未打包前的路径
+    var data = JSON.parse(fs.readFileSync(path.join(__dirname, '../../../../package.json')).toString())
+  } catch (error) {
+    // 打包后的路径
+    data = JSON.parse(fs.readFileSync(path.join(__dirname, '../../../../resources/app.asar/package.json')).toString())
+  }
+  console.log(data.version)
   return data.version
 }
 
 function getCurrentVersion () {
-  var versionUrl = 'https://raw.githubusercontent.com/lt94/electron-searchMovies/package.json'
+  var versionUrl = 'https://raw.githubusercontent.com/lt94/electron-searchMovies/master/package.json'
   return new Promise(function (resolve, reject) {
     request(versionUrl, function (error, response, body) {
       if (response.statusCode !== 200) {
@@ -27,7 +34,7 @@ function getCurrentVersion () {
 }
 
 function getUpdate () {
-  var versionUrl = 'https://raw.githubusercontent.com/lt94/electron-searchMovies/package.json'
+  var versionUrl = 'https://raw.githubusercontent.com/lt94/electron-searchMovies/master/package.json'
   return new Promise(function (resolve, reject) {
     request(versionUrl, function (error, response, body) {
       if (response.statusCode !== 200) {
@@ -38,7 +45,7 @@ function getUpdate () {
           resolve(100)
           return
         }
-        updatefiles = data.changes
+        updatefiles = data['changes']
         updatefilesCount = updatefiles.length
         updateApp(resolve)
       }
@@ -65,7 +72,7 @@ function updateApp (resolve) {
 }
 
 function updateFile (callback) {
-  var fileUrl = 'https://raw.githubusercontent.com/lt94/electron-searchMovies/' + updatefiles[updatefilesIndex++]
+  var fileUrl = 'https://raw.githubusercontent.com/lt94/electron-searchMovies/master/' + updatefiles[updatefilesIndex++]
   request(fileUrl, function (error, response, body) {
     if (response.statusCode !== 200) {
       console.log(error)

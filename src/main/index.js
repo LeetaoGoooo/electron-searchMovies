@@ -14,11 +14,14 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow
+let loadingScreen
 const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080`
+  ? `http://localhost:9080/`
   : `file://${__dirname}/index.html`
 
-require('electron-debug')({ showDevTools: true })
+const loadingURL = process.env.NODE_ENV === 'development'
+  ? `http://localhost:9080/#/loading`
+  : `file://${__dirname}/index.html#loading`
 
 function createWindow () {
   /**
@@ -29,7 +32,8 @@ function createWindow () {
     useContentSize: true,
     width: 1000,
     minWidth: 780,
-    icon: image
+    icon: image,
+    show: false
   })
 
   mainWindow.loadURL(winURL)
@@ -37,9 +41,43 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.show()
+
+    if (loadingScreen) {
+      let loadingScreenBounds = loadingScreen.getBounds()
+      mainWindow.setBounds(loadingScreenBounds)
+      loadingScreen.close()
+    }
+  })
 }
 
-app.on('ready', createWindow)
+function createLoadingScreen () {
+  loadingScreen = new BrowserWindow({
+    height: 563,
+    useContentSize: true,
+    width: 1000,
+    minWidth: 780,
+    icon: image,
+    show: false,
+    parent: mainWindow
+  })
+
+  console.log(loadingURL)
+  loadingScreen.loadURL(loadingURL)
+  loadingScreen.on('closed', () => {
+    loadingScreen = null
+  })
+  loadingScreen.webContents.on('did-finish-load', () => {
+    loadingScreen.show()
+  })
+}
+
+app.on('ready', () => {
+  createLoadingScreen()
+  createWindow()
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

@@ -1,0 +1,160 @@
+Arguments: 
+  E:\nodejs\node.exe E:\Yarn\bin\yarn.js install
+
+PATH: 
+  C:\Program Files\Docker\Docker\Resources\bin;E:\Python27\;E:\Python27\Scripts;E:\Python27\geckodriver;E:\Python27\chromedriver_win32;E:\Python27\Edge;E:\Anaconda3;E:\Anaconda3\Library\mingw-w64\bin;E:\Anaconda3\Library\usr\bin;E:\Anaconda3\Library\bin;C:\ProgramData\Oracle\Java\javapath;E:\Go\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_101/bin;E:\wamp\bin\php\php5.6.19;C:\Windows\System32;C:\Program Files\MongoDB\Server\3.4\bin;C:\Users\Leetao\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;E:\Android\sdk\platform-tools;C:\ProgramData\ComposerSetup\bin;E:\phantomjs-2.1.1-windows\bin;E:\HashiCorp\Vagrant\bin;E:\nodejs\;E:\nginx;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\lib\x64;E:\Anaconda3\Scripts;E:\Git\cmd;E:\Git\mingw64\bin;E:\Git\usr\bin;E:\Yarn\bin;C:\Users\Leetao\AppData\Local\Microsoft\WindowsApps;;E:\Microsoft VS Code\bin;C:\Users\Leetao\AppData\Roaming\Composer\vendor\bin;C:\Users\Leetao\AppData\Roaming\npm;C:\Users\Leetao\AppData\Local\Yarn\bin
+
+Yarn version: 
+  1.0.2
+
+Node version: 
+  8.1.2
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "search-movies",
+    "version": "0.0.0",
+    "author": "lt94 <leetao94cn@gmail.com>",
+    "description": "An electron-vue project",
+    "license": "GPL",
+    "main": "./dist/electron/main.js",
+    "scripts": {
+      "build": "node .electron-vue/build.js && electron-builder",
+      "build:dir": "node .electron-vue/build.js && electron-builder --dir",
+      "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
+      "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
+      "dev": "node .electron-vue/dev-runner.js",
+      "e2e": "npm run pack && mocha test/e2e",
+      "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src test",
+      "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src test",
+      "pack": "npm run pack:main && npm run pack:renderer",
+      "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
+      "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
+      "test": "npm run unit && npm run e2e",
+      "unit": "karma start test/unit/karma.conf.js",
+      "postinstall": "npm run lint:fix"
+    },
+    "build": {
+      "productName": "search-movies",
+      "appId": "org.simulatedgreg.electron-vue",
+      "directories": {
+        "output": "build"
+      },
+      "files": [
+        "dist/electron/**/*"
+      ],
+      "dmg": {
+        "contents": [
+          {
+            "x": 410,
+            "y": 150,
+            "type": "link",
+            "path": "/Applications"
+          },
+          {
+            "x": 130,
+            "y": 150,
+            "type": "file"
+          }
+        ]
+      },
+      "mac": {
+        "icon": "build/icons/icon.icns"
+      },
+      "win": {
+        "icon": "build/icons/icon.ico"
+      },
+      "linux": {
+        "icon": "build/icons"
+      }
+    },
+    "dependencies": {
+      "async": "^2.5.0",
+      "axios": "^0.16.1",
+      "bootstrap": "^3.3.7",
+      "bson": "^1.0.4",
+      "cheerio": "^1.0.0-rc.2",
+      "iconv-lite": "^0.4.18",
+      "is-buffer": "^1.1.5",
+      "request": "^2.81.0",
+      "socket.io": "^2.0.3",
+      "vue": "^2.3.3",
+      "vue-electron": "^1.0.6",
+      "vue-router": "^2.5.3",
+      "vuex": "^2.3.1"
+    },
+    "devDependencies": {
+      "babel-core": "^6.25.0",
+      "babel-loader": "^7.1.1",
+      "babel-plugin-transform-runtime": "^6.23.0",
+      "babel-preset-env": "^1.6.0",
+      "babel-preset-stage-0": "^6.24.1",
+      "babel-register": "^6.24.1",
+      "babili-webpack-plugin": "^0.1.2",
+      "cfonts": "^1.1.3",
+      "chalk": "^2.1.0",
+      "copy-webpack-plugin": "^4.0.1",
+      "cross-env": "^5.0.5",
+      "css-loader": "^0.28.4",
+      "del": "^3.0.0",
+      "devtron": "^1.4.0",
+      "electron": "^1.7.5",
+      "electron-debug": "^1.4.0",
+      "electron-devtools-installer": "^2.2.0",
+      "electron-builder": "^19.19.1",
+      "babel-eslint": "^7.2.3",
+      "eslint": "^4.4.1",
+      "eslint-friendly-formatter": "^3.0.0",
+      "eslint-loader": "^1.9.0",
+      "eslint-plugin-html": "^3.1.1",
+      "eslint-config-standard": "^10.2.1",
+      "eslint-plugin-import": "^2.7.0",
+      "eslint-plugin-node": "^5.1.1",
+      "eslint-plugin-promise": "^3.5.0",
+      "eslint-plugin-standard": "^3.0.1",
+      "extract-text-webpack-plugin": "^3.0.0",
+      "file-loader": "^0.11.2",
+      "html-webpack-plugin": "^2.30.1",
+      "inject-loader": "^3.0.0",
+      "karma": "^1.3.0",
+      "karma-chai": "^0.1.0",
+      "karma-coverage": "^1.1.1",
+      "karma-electron": "^5.1.1",
+      "karma-mocha": "^1.2.0",
+      "karma-sourcemap-loader": "^0.3.7",
+      "karma-spec-reporter": "^0.0.31",
+      "karma-webpack": "^2.0.1",
+      "webpack-merge": "^4.1.0",
+      "require-dir": "^0.3.0",
+      "spectron": "^3.7.1",
+      "babel-plugin-istanbul": "^4.1.1",
+      "chai": "^4.0.0",
+      "mocha": "^3.0.2",
+      "multispinner": "^0.2.1",
+      "node-loader": "^0.6.0",
+      "style-loader": "^0.18.2",
+      "url-loader": "^0.5.9",
+      "vue-html-loader": "^1.2.4",
+      "vue-loader": "^12.2.2",
+      "vue-style-loader": "^3.0.1",
+      "vue-template-compiler": "^2.4.2",
+      "webpack": "^3.5.2",
+      "webpack-dev-server": "^2.7.1",
+      "webpack-hot-middleware": "^2.18.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: connect ETIMEDOUT 104.16.62.173:443
+      at Object.exports._errnoException (util.js:1016:11)
+      at exports._exceptionWithHostPort (util.js:1039:20)
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1138:14)

@@ -8,6 +8,9 @@
             <button type="button" ref="search_btn" class="col-sm-2 col-md-2 col-lg-2 btn btn-primary" data-loading-text="正在查询..." autocomplete="off" v-on:click='searchMovies'>Search</button>            
         </div>
     </div>
+    <div v-if="loading">
+      <progress-bar></progress-bar>
+    </div>
 	<div class="panel panel-default" v-if="searchList.length">
 		<div class="panel-heading">查询结果</div>
 		<ul class="list-group">
@@ -34,23 +37,30 @@
 <script>
 import Searchs from '@/services/searchs'
 import Utils from '@/services/utils'
+import Logs from '@/services/logs'
+import ProgressBar from '../ProgressPage/ProgressBar'
 
 export default {
+  components: { ProgressBar },
   data () {
     return {
+      loading: false,
       searchList: []
     }
   },
   methods: {
     searchMovies: function () {
       var movieName = this.$refs.movie_name.value
+      this.loading = true
       Searchs.search(movieName).then(this.changeSearchList, this.reportError)
     },
     changeSearchList: function (data) {
       this.searchList = data
+      this.loading = false
     },
     reportError: function (error) {
       console.log(error)
+      Logs.logError(error)
     },
     copyUrl: function (href) {
       Utils.copy2Board(href)
