@@ -37,11 +37,15 @@ export default {
       Updates.getUpdate().then(this.changeProgrss, this.reportError)
     },
     changeVersion: function (version) {
-      if (version) {
+      console.log(version)
+      if (version !== 'ENOTFOUND') {
+        this.$emit('NETSTATUS', true)
         if (this.current_version !== version) {
           this.update = true
           this.version = version
         }
+      } else {
+        this.$emit('NETSTATUS', false)
       }
     },
     reportError: function (error) {

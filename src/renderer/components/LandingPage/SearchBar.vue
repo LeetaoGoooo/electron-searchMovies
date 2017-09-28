@@ -5,7 +5,8 @@
             <div class="col-sm-6 col-md-6 col-lg-6 col-md-offset-2 col-sm-offset-2 col-lg-offset-2">
                 <input type="text" class="form-control" ref="movie_name" value="" placeholder="要搜索的电影名称">
             </div>
-            <button type="button" ref="search_btn" class="col-sm-2 col-md-2 col-lg-2 btn btn-primary" data-loading-text="正在查询..." autocomplete="off" v-on:click='searchMovies'>Search</button>            
+            <button v-if="netstatus" type="button" ref="search_btn" class="col-sm-2 col-md-2 col-lg-2 btn btn-primary" data-loading-text="正在查询..." autocomplete="off" v-on:click='searchMovies'>Search</button>            
+            <button v-else type="button" ref="search_btn" class="col-sm-2 col-md-2 col-lg-2 btn btn-primary" data-loading-text="正在查询..." autocomplete="off" v-on:click='searchMovies' disabled="disabled">Net Error...</button>                        
         </div>
     </div>
     <div v-if="loading">
@@ -14,7 +15,7 @@
 	<div class="panel panel-default" v-if="searchList.length">
 		<div class="panel-heading">查询结果</div>
 		<ul class="list-group">
-			<a class="list-group-item" v-for="item in searchList"  v-on:click="copyUrl(item.href)">{{ item.text }}</a>
+			<a class="list-group-item movie_item" v-for="item in searchList"  v-on:click="copyUrl(item.href)">{{ item.text }}</a>
 		</ul>
 	</div>
   <div class="well" v-else style="margin-top:20%">
@@ -42,6 +43,7 @@ import ProgressBar from '../ProgressPage/ProgressBar'
 
 export default {
   components: { ProgressBar },
+  props: ['netstatus'],
   data () {
     return {
       loading: false,
@@ -59,7 +61,6 @@ export default {
       this.loading = false
     },
     reportError: function (error) {
-      console.log(error)
       Logs.logError(error)
     },
     copyUrl: function (href) {
@@ -68,4 +69,9 @@ export default {
     }
   }
 }
-</script>>
+</script>
+<style>
+.movie_item {
+  cursor:pointer
+}
+</style>

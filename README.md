@@ -23,11 +23,15 @@ npm run lint
 
 ```
 
-### TODO
+### Changes
+- [x] add a preview loading page
+- [x] add a progress bar
+- [x] add log4js
+- [x] modify mouse hover effect
+- [x] add net status listener
 
-- [ x ] add a preview loading page
-- [ x ] add a progress bar
-- [ x ] add log4js
+### TODO
+- [ ] beautify the application
 
 ---
 

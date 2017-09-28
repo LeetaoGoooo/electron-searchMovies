@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-        <update-bar></update-bar>
-        <search-bar></search-bar>
+        <update-bar v-on:NETSTATUS='getNetstatus'></update-bar>
+        <search-bar :netstatus="status" ></search-bar>
   </div>
 </template>
 
@@ -11,7 +11,17 @@ import SearchBar from './LandingPage/SearchBar'
 
 export default {
   name: 'landing-page',
-  components: { SearchBar, UpdateBar }
+  data () {
+    return {
+      status: true
+    }
+  },
+  components: { SearchBar, UpdateBar },
+  methods: {
+    getNetstatus: function (status) {
+      this.status = status
+    }
+  }
 }
 </script>
 

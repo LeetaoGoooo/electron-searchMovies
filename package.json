@@ -1,6 +1,6 @@
 {
   "name": "search-movies",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "lt94 <leetao94cn@gmail.com>",
   "description": "An electron-vue project",
   "license": "GPL",
@@ -129,5 +129,6 @@
     "webpack-dev-server": "^2.7.1",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-merge": "^4.1.0"
-  }
+  },
+  "changes":["src/renderer/IndexPage.vue","src/renderer/components/LandingPage/SearchBar.vue","src/renderer/components/UpdatePage/UpdateBar.vue","src/services/utils/index.js","src/services/updates/index.js","package.json"]
 }
