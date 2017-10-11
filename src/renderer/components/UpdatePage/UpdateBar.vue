@@ -27,7 +27,7 @@ export default {
     },
     changeVersion: function (version) {
       console.log(version)
-      if (version !== 'ENOTFOUND') {
+      if (version !== 'NOTFOUND' && version !== 'ETIMEDOUT') {
         this.$emit('NETSTATUS', true)
         if (this.current_version !== version) {
           this.update = true
